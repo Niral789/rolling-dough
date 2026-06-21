@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rolling Dough | Live Pizza Catering</title>
+  <meta name="description" content="Rolling Dough premium live pizza catering packages for events, weddings, parties and celebrations." />
+  <style>
+    :root {
+      --ink: #171311;
+      --coal: #241f1b;
+      --paper: #fff8ec;
+      --cream: #f3e2c8;
+      --gold: #c99343;
+      --tomato: #b73b22;
+      --basil: #4b6f44;
+      --line: rgba(255, 248, 236, 0.22);
+      --shadow: 0 24px 70px rgba(23, 19, 17, 0.18);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      letter-spacing: 0;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      padding: 18px clamp(18px, 4vw, 56px);
+      color: white;
+      background: rgba(23, 19, 17, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      display: grid;
+      gap: 1px;
+      min-width: 148px;
+      text-transform: uppercase;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(18px, 2.4vw, 27px);
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .brand span {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.78);
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: clamp(12px, 2vw, 30px);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .nav a {
+      opacity: 0.86;
+    }
+
+    .nav a:hover {
+      opacity: 1;
+      color: var(--gold);
+    }
+
+    .nav .nav-cta {
+      padding: 11px 16px;
+      color: var(--ink);
+      background: var(--gold);
+      border-radius: 999px;
+      opacity: 1;
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      align-items: end;
+      color: white;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(183, 59, 34, 0.2), transparent 32%),
+        linear-gradient(180deg, #171311 0%, #241f1b 100%);
+    }
+
+    .hero-inner {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 142px 0 38px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(320px, 1.12fr);
+      gap: clamp(22px, 4vw, 52px);
+      align-items: center;
+    }
+
+    .hero-content {
+      display: grid;
+      gap: 28px;
+      padding: clamp(22px, 4vw, 40px);
+      border: 1px solid rgba(255, 248, 236, 0.16);
+      border-radius: var(--radius);
+      background: rgba(23, 19, 17, 0.78);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-media {
+      position: relative;
+      min-height: clamp(420px, 64vw, 690px);
+      border: 1px solid rgba(255, 248, 236, 0.18);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #100d0b;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 28%;
+      background: linear-gradient(0deg, rgba(23, 19, 17, 0.42), transparent);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(46px, 8vw, 104px);
+      line-height: 0.95;
+      font-weight: 700;
+    }
+
+    .hero-copy {
+      max-width: 610px;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: clamp(17px, 2.1vw, 22px);
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 19px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 850;
+      line-height: 1;
+      transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: var(--ink);
+      background: var(--gold);
+    }
+
+    .btn-dark {
+      color: white;
+      background: var(--ink);
+    }
+
+    .btn-ghost {
+      color: white;
+      border-color: rgba(255, 255, 255, 0.42);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto 32px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .hero-stat {
+      padding: 18px;
+      background: rgba(23, 19, 17, 0.72);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-stat strong {
+      display: block;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(21px, 3vw, 32px);
+      line-height: 1;
+    }
+
+    .hero-stat span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    section {
+      padding: clamp(58px, 8vw, 104px) 0;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(260px, 0.6fr);
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+
+    .section-head h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(35px, 5.5vw, 68px);
+      line-height: 1;
+    }
+
+    .section-head p {
+      color: rgba(23, 19, 17, 0.68);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .story-band {
+      background: var(--coal);
+      color: white;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: clamp(26px, 5vw, 64px);
+      align-items: center;
+    }
+
+    .story-image {
+      min-height: 520px;
+      border-radius: var(--radius);
+      background: url("rolling-dough-brand.png") center / cover no-repeat;
+      box-shadow: var(--shadow);
+    }
+
+    .story-copy {
+      display: grid;
+      gap: 22px;
+    }
+
+    .story-copy h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1;
+    }
+
+    .story-copy p {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding-top: 12px;
+    }
+
+    .feature {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.86);
+      font-weight: 700;
+    }
+
+    .feature b {
+      color: var(--gold);
+    }
+
+    .packages {
+      background:
+        linear-gradient(180deg, rgba(255, 248, 236, 0.98), rgba(243, 226, 200, 0.76)),
+        radial-gradient(circle at top right, rgba(183, 59, 34, 0.1), transparent 42%);
+    }
+
+    .package-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .package-card {
+      position: relative;
+      display: grid;
+      gap: 22px;
+      padding: 24px;
+      min-height: 100%;
+      background: white;
+      border: 1px solid rgba(23, 19, 17, 0.09);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 44px rgba(23, 19, 17, 0.08);
+    }
+
+    .package-card.featured {
+      border-color: rgba(201, 147, 67, 0.8);
+      transform: translateY(-10px);
+    }
+
+    .tag {
+      width: fit-content;
+      padding: 7px 10px;
+      color: white;
+      background: var(--tomato);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .package-title {
+      display: grid;
+      gap: 8px;
+    }
+
+    .package-title h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(26px, 3vw, 34px);
+      line-height: 1;
+    }
+
+    .price {
+      color: var(--tomato);
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .menu-list {
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .menu-list li {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      color: rgba(23, 19, 17, 0.76);
+      line-height: 1.4;
+    }
+
+    .menu-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      flex: 0 0 8px;
+      border-radius: 50%;
+      background: var(--basil);
+    }
+
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .note {
+      padding: 17px;
+      border-radius: var(--radius);
+      background: rgba(23, 19, 17, 0.05);
+      color: rgba(23, 19, 17, 0.76);
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1.45;
+    }
+
+    .booking {
+      background: var(--coal);
+      color: white;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: clamp(24px, 5vw, 56px);
+      align-items: start;
+    }
+
+    .booking-copy {
+      position: sticky;
+      top: 104px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .booking-copy h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(35px, 5vw, 66px);
+      line-height: 1;
+    }
+
+    .booking-copy p {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .availability-panel {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.55;
+    }
+
+    .form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      padding: clamp(18px, 3vw, 28px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 13px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 13px 14px;
+      color: var(--ink);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+      background: var(--paper);
+      outline: none;
+    }
+
+    textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201, 147, 67, 0.22);
+    }
+
+    .availability {
+      grid-column: 1 / -1;
+      min-height: 44px;
+      padding: 12px 14px;
+      border-radius: var(--radius);
+      color: rgba(255, 255, 255, 0.86);
+      background: rgba(255, 255, 255, 0.08);
+      line-height: 1.45;
+    }
+
+    .availability.good {
+      color: #f5fff1;
+      background: rgba(75, 111, 68, 0.28);
+    }
+
+    .availability.bad {
+      color: #fff0e8;
+      background: rgba(183, 59, 34, 0.34);
+    }
+
+    .form-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .estimate {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .gallery {
+      background: #fffaf1;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .gallery-tile {
+      min-height: 260px;
+      padding: 24px;
+      display: grid;
+      align-content: end;
+      border-radius: var(--radius);
+      overflow: hidden;
+      color: white;
+      background: linear-gradient(0deg, rgba(23, 19, 17, 0.78), rgba(23, 19, 17, 0.2)), url("rolling-dough-brand.png") center / cover no-repeat;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-tile.alt {
+      background:
+        linear-gradient(0deg, rgba(23, 19, 17, 0.88), rgba(23, 19, 17, 0.25)),
+        linear-gradient(135deg, #241f1b, #b73b22 56%, #4b6f44);
+    }
+
+    .gallery-tile h3 {
+      max-width: 420px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1;
+    }
+
+    .gallery-tile p {
+      max-width: 450px;
+      margin-top: 12px;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.55;
+    }
+
+    .pizza-menu {
+      background:
+        linear-gradient(180deg, #fffaf1 0%, #f3e2c8 100%),
+        radial-gradient(circle at top left, rgba(201, 147, 67, 0.16), transparent 36%);
+    }
+
+    .pizza-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .pizza-card {
+      display: grid;
+      grid-template-rows: 190px auto;
+      min-height: 100%;
+      overflow: hidden;
+      border: 1px solid rgba(23, 19, 17, 0.1);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: 0 16px 46px rgba(23, 19, 17, 0.08);
+    }
+
+    .pizza-art {
+      position: relative;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 50%, #f9d68a 0 38%, #d99a44 39% 44%, transparent 45%),
+        linear-gradient(135deg, rgba(75, 111, 68, 0.28), rgba(183, 59, 34, 0.22)),
+        #241f1b;
+    }
+
+    .pizza-art::before {
+      content: "";
+      width: 138px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 34% 28%, var(--topping-a) 0 7px, transparent 8px),
+        radial-gradient(circle at 68% 32%, var(--topping-b) 0 8px, transparent 9px),
+        radial-gradient(circle at 49% 62%, var(--topping-c) 0 9px, transparent 10px),
+        radial-gradient(circle at 28% 70%, var(--topping-b) 0 6px, transparent 7px),
+        radial-gradient(circle at 74% 68%, var(--topping-a) 0 7px, transparent 8px),
+        radial-gradient(circle at center, #fff1c9 0 54%, #d58a32 55% 67%, #b96f27 68% 100%);
+      border: 8px solid #e8b864;
+      box-shadow: 0 18px 32px rgba(23, 19, 17, 0.28);
+    }
+
+    .pizza-art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(23, 19, 17, 0.35), transparent 58%);
+      pointer-events: none;
+    }
+
+    .pizza-card:nth-child(1) .pizza-art { --topping-a: #f8f0d5; --topping-b: #e7c879; --topping-c: #ffffff; }
+    .pizza-card:nth-child(2) .pizza-art { --topping-a: #ffffff; --topping-b: #4b6f44; --topping-c: #f3d786; }
+    .pizza-card:nth-child(3) .pizza-art { --topping-a: #4b6f44; --topping-b: #e8efe2; --topping-c: #d6a046; }
+    .pizza-card:nth-child(4) .pizza-art { --topping-a: #fff6d8; --topping-b: #d6a046; --topping-c: #f8f0d5; }
+    .pizza-card:nth-child(5) .pizza-art { --topping-a: #b73b22; --topping-b: #ffffff; --topping-c: #4b6f44; }
+    .pizza-card:nth-child(6) .pizza-art { --topping-a: #4b6f44; --topping-b: #b73b22; --topping-c: #f3d786; }
+    .pizza-card:nth-child(7) .pizza-art { --topping-a: #b73b22; --topping-b: #ffffff; --topping-c: #4b6f44; }
+    .pizza-card:nth-child(8) .pizza-art { --topping-a: #4b6f44; --topping-b: #f8f0d5; --topping-c: #ffffff; }
+    .pizza-card:nth-child(9) .pizza-art { --topping-a: #4b6f44; --topping-b: #b73b22; --topping-c: #2f3f64; }
+
+    .pizza-body {
+      display: grid;
+      align-content: start;
+      gap: 13px;
+      padding: 18px;
+    }
+
+    .pizza-body h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      line-height: 1.05;
+    }
+
+    .ingredients {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .ingredients li {
+      padding: 7px 9px;
+      border-radius: 999px;
+      color: rgba(23, 19, 17, 0.78);
+      background: rgba(201, 147, 67, 0.16);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    footer {
+      padding: 28px 0;
+      color: rgba(255, 255, 255, 0.68);
+      background: #171311;
+    }
+
+    .footer-inner {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 920px) {
+      .nav a:not(.nav-cta) {
+        display: none;
+      }
+
+      .hero-strip,
+      .hero-inner,
+      .package-grid,
+      .notes,
+      .story-grid,
+      .booking-grid,
+      .gallery-grid,
+      .pizza-grid,
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-inner {
+        padding-top: 118px;
+      }
+
+      .hero-content {
+        order: 2;
+      }
+
+      .hero-media {
+        order: 1;
+        min-height: 520px;
+      }
+
+      .package-card.featured {
+        transform: none;
+      }
+
+      .story-image {
+        min-height: 380px;
+      }
+
+      .booking-copy {
+        position: static;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .topbar {
+        padding: 13px 16px;
+      }
+
+      .brand {
+        min-width: auto;
+        font-size: 18px;
+      }
+
+      .nav .nav-cta {
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+
+      .hero-inner {
+        padding-top: 98px;
+        gap: 16px;
+      }
+
+      .hero-content {
+        padding: 20px;
+      }
+
+      .hero-media {
+        min-height: 370px;
+      }
+
+      .hero-media img {
+        object-position: center top;
+      }
+
+      h1 {
+        font-size: clamp(42px, 15vw, 62px);
+      }
+
+      .hero-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-stat {
+        padding: 14px;
+      }
+
+      .form {
+        grid-template-columns: 1fr;
+      }
+
+      .field {
+        grid-column: 1 / -1;
+      }
+
+      .feature-list {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Rolling Dough home">
+      Rolling Dough
+      <span>Live pizza catering</span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#story">Experience</a>
+      <a href="#packages">Packages</a>
+      <a href="#booking" class="nav-cta">Book Now</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="Rolling Dough live pizza catering">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <span class="eyebrow">Events | Weddings | Parties | Celebrations</span>
+          <h1>Live pizza, made fresh at your event.</h1>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#packages">View Packages</a>
+            <a class="btn btn-ghost" href="#booking">Check Date</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img src="rolling-dough-brand.png" alt="Rolling Dough live pizza chef and wood-fired oven" />
+        </div>
+      </div>
+      <div class="hero-strip" aria-label="Service highlights">
+        <div class="hero-stat"><strong>3</strong><span>Unlimited packages</span></div>
+        <div class="hero-stat"><strong>20+</strong><span>Minimum guests</span></div>
+        <div class="hero-stat"><strong>Live</strong><span>Pizza station</span></div>
+        <div class="hero-stat"><strong>All in</strong><span>Tables to plates</span></div>
+      </div>
+    </section>
+
+    <section class="story-band" id="story">
+      <div class="wrap story-grid">
+        <div class="story-image" role="img" aria-label="Rolling Dough chef with live pizza oven"></div>
+        <div class="story-copy">
+          <span class="eyebrow">Crafted for private events</span>
+          <h2>Authentic flavours with a polished event setup.</h2>
+          <p>Every booking is designed around fresh dough, Italian-inspired ingredients, hot service and a clean premium counter that fits weddings, birthdays, corporate events and family celebrations.</p>
+          <div class="feature-list">
+            <div class="feature"><b>01</b> Finest Italian ingredients</div>
+            <div class="feature"><b>02</b> Freshly served live</div>
+            <div class="feature"><b>03</b> Tables and disposals included</div>
+            <div class="feature"><b>04</b> Ahmedabad and Vadodara service</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="packages" id="packages">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Unlimited pizza packages.</h2>
+          <p>Choose a package for your guest list and send the booking enquiry directly on WhatsApp for confirmation.</p>
+        </div>
+        <div class="package-grid">
+          <article class="package-card">
+            <span class="tag">Package 1</span>
+            <div class="package-title">
+              <h3>Classic Unlimited</h3>
+              <p class="price">Rs. 650 Adult | Rs. 450 Kid</p>
+            </div>
+            <ul class="menu-list">
+              <li>Margherita Classica</li>
+              <li>Farm Fresh Veg</li>
+              <li>Spicy Paneer Picante</li>
+              <li>Cheesy Garlic Bread</li>
+            </ul>
+            <button class="btn btn-dark package-select" type="button" data-package="Classic Unlimited">Book Classic</button>
+          </article>
+
+          <article class="package-card featured">
+            <span class="tag">Most Popular</span>
+            <div class="package-title">
+              <h3>Signature Unlimited</h3>
+              <p class="price">Rs. 750 Adult | Rs. 550 Kid</p>
+            </div>
+            <ul class="menu-list">
+              <li>Margherita Classica</li>
+              <li>Pesto Primavera</li>
+              <li>Mediterranean Roasted Veg</li>
+              <li>Cheesy Garlic Bread</li>
+            </ul>
+            <button class="btn btn-dark package-select" type="button" data-package="Signature Unlimited">Book Signature</button>
+          </article>
+
+          <article class="package-card">
+            <span class="tag">Package 3</span>
+            <div class="package-title">
+              <h3>Gourmet Unlimited</h3>
+              <p class="price">Rs. 850 Adult | Rs. 650 Kid</p>
+            </div>
+            <ul class="menu-list">
+              <li>Four Cheese Bianca</li>
+              <li>Burrata Bomb Garden</li>
+              <li>Tuscan Broccoli Supreme</li>
+              <li>Cheesy Garlic Bread</li>
+            </ul>
+            <button class="btn btn-dark package-select" type="button" data-package="Gourmet Unlimited">Book Gourmet</button>
+          </article>
+        </div>
+
+        <div class="notes" aria-label="Package notes">
+          <div class="note">Minimum 20 persons required for every booking.</div>
+          <div class="note">Ahmedabad and Vadodara locations include Rs. 2000 extra transportation.</div>
+          <div class="note">Rolling Dough handles tables, counter setup and disposal plates.</div>
+          <div class="note">Limited event slots available. Early date check is recommended.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking" id="booking">
+      <div class="wrap booking-grid">
+        <div class="booking-copy">
+          <span class="eyebrow">Booking enquiry</span>
+          <h2>Check your date and send details on WhatsApp.</h2>
+          <p>Select a package, add the event date, time, location and guest count. If a date is already reserved, the page will show a clear message before the enquiry is sent.</p>
+          <div class="availability-panel">
+            Pre-booked date demo: 2026-06-28. Add or remove dates inside the page script under <strong>preBookedDates</strong>.
+          </div>
+        </div>
+
+        <form class="form" id="bookingForm">
+          <div class="field">
+            <label for="package">Package</label>
+            <select id="package" required>
+              <option value="">Select package</option>
+              <option value="Classic Unlimited" data-adult="650" data-kid="450">Classic Unlimited</option>
+              <option value="Signature Unlimited" data-adult="750" data-kid="550">Signature Unlimited</option>
+              <option value="Gourmet Unlimited" data-adult="850" data-kid="650">Gourmet Unlimited</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="eventType">Event Type</label>
+            <select id="eventType" required>
+              <option value="">Select event</option>
+              <option>Wedding</option>
+              <option>Birthday Party</option>
+              <option>Corporate Event</option>
+              <option>House Party</option>
+              <option>Celebration</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="eventDate">Date</label>
+            <input id="eventDate" type="date" required />
+          </div>
+
+          <div class="field">
+            <label for="eventTime">Time</label>
+            <input id="eventTime" type="time" required />
+          </div>
+
+          <div class="availability" id="availabilityMessage">Select a date to check availability.</div>
+
+          <div class="field">
+            <label for="customerName">Customer Name</label>
+            <input id="customerName" type="text" placeholder="Full name" required />
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input id="phone" type="tel" placeholder="Customer mobile number" required />
+          </div>
+
+          <div class="field">
+            <label for="state">State</label>
+            <input id="state" type="text" placeholder="State" required />
+          </div>
+
+          <div class="field">
+            <label for="city">City</label>
+            <input id="city" type="text" placeholder="City" required />
+          </div>
+
+          <div class="field">
+            <label for="adultCount">Adults</label>
+            <input id="adultCount" type="number" min="0" value="20" required />
+          </div>
+
+          <div class="field">
+            <label for="kidCount">Kids</label>
+            <input id="kidCount" type="number" min="0" value="0" required />
+          </div>
+
+          <div class="field full">
+            <label for="address">Address</label>
+            <textarea id="address" placeholder="Full event address" required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Send Booking on WhatsApp</button>
+            <p class="estimate" id="estimate">Estimated package amount will appear after selecting a package.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="gallery">
+      <div class="wrap gallery-grid">
+        <div class="gallery-tile">
+          <h3>A live counter guests remember.</h3>
+          <p>Fresh oven aroma, clean presentation and unlimited slices served hot through the celebration.</p>
+        </div>
+        <div class="gallery-tile alt">
+          <h3>Premium, simple and celebration-ready.</h3>
+          <p>From setup to disposal plates, the service is planned so hosts can enjoy the event.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pizza-menu" id="pizza-menu">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Pizza flavours and ingredients.</h2>
+          <p>A clean showcase of all unique items across the packages, with simple ingredient cues for guests and event hosts.</p>
+        </div>
+
+        <div class="pizza-grid">
+          <article class="pizza-card">
+            <div class="pizza-art" aria-hidden="true"></div>
+            <div class="pizza-body">
+              <h3>Four Cheese Bianca</h3>
+              <ul class="ingredients">
+                <li>Mozzarella</li>
+                <li>Parmesan</li>
+                <li>Ricotta</li>
+                <li>White sauce</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="pizza-card">
+            <div class="pizza-art" aria-hidden="true"></div>
+            <div class="pizza-body">
+              <h3>Burrata Bomb Garden</h3>
+              <ul class="ingredients">
+                <li>Burrata</li>
+                <li>Cherry tomato</li>
+                <li>Basil</li>
+                <li>Olive oil</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="pizza-card">
+            <div class="pizza-art" aria-hidden="true"></div>
+            <div class="pizza-body">
+              <h3>Tuscan Broccoli Supreme</h3>
+              <ul class="ingredients">
+                <li>Broccoli</li>
+                <li>Garlic</li>
+                <li>Cheese</li>
+                <li>Herbs</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="pizza-card">
+            <div class="pizza-art" aria-hidden="true"></div>
+            <div class="pizza-body">
+              <h3>Cheesy Garlic Bread</h3>
+              <ul class="ingredients">
+                <li>Garlic butter</li>
+                <li>Mozzarella</li>
+                <li>Parsley</li>
+                <li>Toasted bread</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="pizza-card">
+            <div class="pizza-art" aria-hidden="true"></div>
+            <div class="pizza-body">
+              <h3>Margherita Classica</h3>
+              <ul class="ingredients">
+                <li>Tomato sauce</li>
+                <li>Mozzarella</li>
+                <li>Basil</li>
+                <li>Olive oil</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="pizza-card">
+            <div class="pizza-art" aria-hidden="true"></div>
+            <div class="pizza-body">
+              <h3>Farm Fresh Veg</h3>
+              <ul class="ingredients">
+                <li>Capsicum</li>
+                <li>Onion</li>
+                <li>Corn</li>
+                <li>Tomato</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="pizza-card">
+            <div class="pizza-art" aria-hidden="true"></div>
+            <div class="pizza-body">
+              <h3>Spicy Paneer Picante</h3>
+              <ul class="ingredients">
+                <li>Paneer</li>
+                <li>Picante sauce</li>
+                <li>Chilli flakes</li>
+                <li>Onion</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="pizza-card">
+            <div class="pizza-art" aria-hidden="true"></div>
+            <div class="pizza-body">
+              <h3>Pesto Primavera</h3>
+              <ul class="ingredients">
+                <li>Basil pesto</li>
+                <li>Seasonal veg</li>
+                <li>Mozzarella</li>
+                <li>Olive oil</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="pizza-card">
+            <div class="pizza-art" aria-hidden="true"></div>
+            <div class="pizza-body">
+              <h3>Mediterranean Roasted Veg</h3>
+              <ul class="ingredients">
+                <li>Roasted peppers</li>
+                <li>Olives</li>
+                <li>Zucchini</li>
+                <li>Feta-style cheese</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Rolling Dough | Live Pizza</span>
+      <span>Made fresh. Served live.</span>
+    </div>
+  </footer>
+
+  <script>
+    const WHATSAPP_NUMBER = "918460459726";
+    const preBookedDates = ["2026-06-28"];
+    const storedDates = JSON.parse(localStorage.getItem("rollingDoughBookedDates") || "[]");
+    const bookedDates = new Set([...preBookedDates, ...storedDates]);
+
+    const form = document.getElementById("bookingForm");
+    const packageInput = document.getElementById("package");
+    const dateInput = document.getElementById("eventDate");
+    const availabilityMessage = document.getElementById("availabilityMessage");
+    const estimate = document.getElementById("estimate");
+    const adultCount = document.getElementById("adultCount");
+    const kidCount = document.getElementById("kidCount");
+
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    dateInput.min = `${yyyy}-${mm}-${dd}`;
+
+    function selectedRates() {
+      const selected = packageInput.options[packageInput.selectedIndex];
+      return {
+        adult: Number(selected?.dataset.adult || 0),
+        kid: Number(selected?.dataset.kid || 0)
+      };
+    }
+
+    function totalGuests() {
+      return Number(adultCount.value || 0) + Number(kidCount.value || 0);
+    }
+
+    function updateEstimate() {
+      const rates = selectedRates();
+      const adults = Number(adultCount.value || 0);
+      const kids = Number(kidCount.value || 0);
+      if (!packageInput.value || (!adults && !kids)) {
+        estimate.textContent = "Estimated package amount will appear after selecting a package.";
+        return;
+      }
+      const total = adults * rates.adult + kids * rates.kid;
+      estimate.textContent = `Estimated package amount: Rs. ${total.toLocaleString("en-IN")} before transport, if applicable.`;
+    }
+
+    function checkAvailability() {
+      const date = dateInput.value;
+      availabilityMessage.className = "availability";
+      if (!date) {
+        availabilityMessage.textContent = "Select a date to check availability.";
+        return true;
+      }
+      if (bookedDates.has(date)) {
+        availabilityMessage.classList.add("bad");
+        availabilityMessage.textContent = "Sorry, this date is already pre-booked. Please choose another date or call Rolling Dough for alternate slots.";
+        return false;
+      }
+      availabilityMessage.classList.add("good");
+      availabilityMessage.textContent = "Good news, this date is currently available for a booking enquiry.";
+      return true;
+    }
+
+    document.querySelectorAll(".package-select").forEach((button) => {
+      button.addEventListener("click", () => {
+        packageInput.value = button.dataset.package;
+        updateEstimate();
+        document.getElementById("booking").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    [packageInput, adultCount, kidCount].forEach((input) => {
+      input.addEventListener("input", updateEstimate);
+      input.addEventListener("change", updateEstimate);
+    });
+    dateInput.addEventListener("change", checkAvailability);
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!checkAvailability()) {
+        dateInput.focus();
+        return;
+      }
+
+      if (totalGuests() < 20) {
+        availabilityMessage.className = "availability bad";
+        availabilityMessage.textContent = "Minimum 20 persons are required for Rolling Dough packages.";
+        adultCount.focus();
+        return;
+      }
+
+      const rates = selectedRates();
+      const adults = Number(adultCount.value || 0);
+      const kids = Number(kidCount.value || 0);
+      const total = adults * rates.adult + kids * rates.kid;
+      const isTransportCity = ["ahmedabad", "vadodara"].includes(document.getElementById("city").value.trim().toLowerCase());
+
+      const details = [
+        "Rolling Dough Booking Enquiry",
+        "",
+        `Package: ${packageInput.value}`,
+        `Event Type: ${document.getElementById("eventType").value}`,
+        `Date: ${dateInput.value}`,
+        `Time: ${document.getElementById("eventTime").value}`,
+        `Customer Name: ${document.getElementById("customerName").value}`,
+        `Phone: ${document.getElementById("phone").value}`,
+        `State: ${document.getElementById("state").value}`,
+        `City: ${document.getElementById("city").value}`,
+        `Address: ${document.getElementById("address").value}`,
+        `Adults: ${adults}`,
+        `Kids: ${kids}`,
+        `Total Persons: ${totalGuests()}`,
+        `Estimated Package Amount: Rs. ${total.toLocaleString("en-IN")}`,
+        isTransportCity ? "Transport Note: Rs. 2000 extra applicable for Ahmedabad/Vadodara." : "Transport Note: Please confirm transportation charges if applicable.",
+        "",
+        "Please call back to confirm this booking."
+      ].join("\n");
+
+      bookedDates.add(dateInput.value);
+      localStorage.setItem("rollingDoughBookedDates", JSON.stringify([...bookedDates]));
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(details)}`, "_blank", "noopener,noreferrer");
+    });
+
+    checkAvailability();
+    updateEstimate();
+  </script>
+</body>
+</html>
